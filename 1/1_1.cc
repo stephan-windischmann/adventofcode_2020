@@ -32,17 +32,19 @@ int main() {
         data[input[i]] = i;
     }
 
+    int i = 0;
     for (auto const& num : input) {
         int want = TARGET - num;
 
         auto search = data.find(want);
-        if (search != data.end()) {
+        if (search != data.end() && data[want] != 1) {
             std::cout << num << " + " << input[data[want]] << " = " \
                 << TARGET << std::endl;
             std::cout << num << " * " << input[data[want]] << " = " \
                 << num * input[data[want]] << std::endl;
             break;
         }
+        ++i;
     }
 
     return 0;
