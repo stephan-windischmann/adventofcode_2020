@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <fstream>
 #include <iostream>
 #include <sstream>
@@ -18,13 +19,7 @@ void loadInput(std::vector<std::string> &input) {
 }
 
 bool isValidPass(std::string const &pass, char c, int min, int max) {
-    int count = 0;
-
-    for (auto curChar : pass) {
-        if (curChar == c) {
-            ++count;
-        }
-    }
+    int count = std::count(pass.begin(), pass.end(), c);
 
     return count >= min && count <= max;
 }
