@@ -58,7 +58,7 @@ void parseInput(const std::vector<std::string> &input, \
     }
 }
 
-// Perform a DFS
+// Perform a BFS
 int getNumBags(std::string type,
         std::map<std::string, std::vector<std::string> > &isContained) {
     int res = 0;
