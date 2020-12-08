@@ -3,6 +3,7 @@
 #include <map>
 #include <queue>
 #include <regex>
+#include <set>
 #include <sstream>
 #include <string>
 #include <vector>
@@ -51,12 +52,15 @@ void parseInput(const std::vector<std::string> &input, \
         std::regex_match(line.begin(), line.end(), sm, e);
         std::string type = sm[1];
         std::vector<std::string> parents = parseContent(sm[2]);
-        isContained[type] = parents;
+        for (auto const &s : parents) {
+            isContained[s].push_back(type);
+        }
     }
 }
 
+// Perform a DFS
 int getNumBags(std::string type,
-        const std::map<std::string, std::vector<std::string> > &isContained) {
+        std::map<std::string, std::vector<std::string> > &isContained) {
     int res = 0;
 
     std::queue<std::string> q;
@@ -66,6 +70,23 @@ int getNumBags(std::string type,
     for (auto const& s : cur) {
         q.push(s);
     } 
+    
+    std::set<std::string> visited;
+
+    while (q.size() > 0) {
+        int curSize = q.size();
+        for(int i = 0; i < curSize; ++i) {
+            std::string cur = q.front();
+            q.pop();
+            if (visited.find(cur) == visited.end()) {
+                visited.insert(cur);
+                ++res;
+                for (auto const& s : isContained[cur]) {
+                    q.push(s);
+                }          
+            }    
+        }
+    }
 
     return res;
 }
