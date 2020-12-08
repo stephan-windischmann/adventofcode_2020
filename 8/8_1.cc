@@ -55,7 +55,7 @@ int runCode(std::vector<std::string> &input) {
         }
     }
     
-    delete ran;
+    delete[] ran;
     return acc;
 }
 
