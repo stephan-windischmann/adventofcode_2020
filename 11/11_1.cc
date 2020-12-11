@@ -49,16 +49,6 @@ int getNumOccupiedNeighbors(int x, int y, std::vector<std::vector<char> > &input
     return num;
 }
 
-void printMap(std::vector<std::vector<char> > &input) {
-    for (auto const& row : input) {
-        for (auto const& c : row) {
-            std::cout << c;
-        }
-        std::cout << std::endl;    
-    }
-    std::cout << std::endl;
-}
-
 int getOccupiedSeats(std::vector<std::vector<char> > &input) {
     int res = 0;
     
