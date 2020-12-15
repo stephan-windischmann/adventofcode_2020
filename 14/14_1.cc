@@ -27,6 +27,8 @@ void loadInput(std::vector<prog> &input) {
         
         prog curProg;
         curProg.mask = sm[1];
+        // Reverse mask to iterate in same order as bitset.
+        std::reverse(curProg.mask.begin(), curProg.mask.end());
 
         while (std::getline(file, line)) {
             if (line.substr(0, 3) != "mem") {
@@ -54,8 +56,7 @@ unsigned long applyMask(std::bitset<36> num, const std::string &mask) {
 
     for (int i = mask.size() - 1; i >= 0; --i) {
         if (mask[i] != 'X') {
-            //num[num.size() - 1 - i] = mask[i] == '1' ? true : false;
-            num[num.size() - 1 - i] = (bool)(mask[i] - '0');
+            num[i] = (bool)(mask[i] - '0');
         }
     }
     return num.to_ulong();
