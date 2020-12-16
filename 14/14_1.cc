@@ -54,7 +54,7 @@ unsigned long applyMask(std::bitset<36> num, const std::string &mask) {
         return num.to_ulong();
     }
 
-    for (int i = mask.size() - 1; i >= 0; --i) {
+    for (int i = 0; i < mask.size(); ++i) {
         if (mask[i] != 'X') {
             num[i] = (bool)(mask[i] - '0');
         }
