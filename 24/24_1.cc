@@ -16,6 +16,7 @@ void loadInput(std::vector<std::string> &input) {
     while (std::getline(file, line)) {
         input.push_back(line);
     }
+    file.close();
 }
 
 void moveE(std::pair<int, int> &curPos) {
